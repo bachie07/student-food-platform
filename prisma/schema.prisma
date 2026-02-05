@@ -11,4 +11,150 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
+
+enum PlaceType{
+
+  CAFE 
+  GROCERY 
+  RESTAURANT
+
+}
+
+enum UserRole{
+
+  HIGH_SCHOOL
+  UNIVERSITY
+  GENERAL
+}
+
+model User{
+
+  id String @id @default(cuid())
+
+  email String @unique
+
+  name String?
+
+  username String @unique
+
+  password String 
+
+  school String
+
+  role UserRole @default(UNIVERSITY)
+
+  createdAt DateTime @default(now())
+
+
+  //relations
+
+  authoredRecipe Recipe[]
+
+  addedPlace Place[]
+
+  savedRecipes SavedRecipe[]
+
+  savedPlaces SavedPlace[]
+
+
+}
+
+
+model Recipe{
+
+  id String @id @default(cuid())
+
+  title String
+
+  timeTaken String
+
+  ingredients String
+
+  instructions String
+
+  cost Float?
+
+  createdAt DateTime @default(now())
+
+
+  //relations
+
+  user User @relation(fields: [userId], references: [id])
+
+  userId String
+
+  savedRecipes SavedRecipe[]
+
+
+
+
+}
+
+model SavedRecipe{
+
+  id String @id @default(cuid())
+
+  user User @relation(fields:[userId], references:[id])
+
+  userId String
+
+  recipe Recipe @relation(fields:[recipeId], references: [id])
+
+  recipeId String
+
+  @@unique([userId, recipeId])
+
+}
+
+
+
+
+model Place{
+
+  id String @id @default(cuid())
+
+  name String
+
+  address String
+
+  placeType PlaceType
+
+  minPrice Float?
+
+  maxPrice Float?
+
+  createdAt DateTime @default(now())
+
+  //relations
+
+  savedPlaces SavedPlace[]
+
+  addedBy User @relation(fields:[addedById], references: [id])
+
+  addedById String
+
+
+
+}
+
+
+model SavedPlace{
+
+  id String @id @default(cuid())
+
+  user User @relation(fields:[userId], references:[id])
+
+  userId String
+
+  place Place @relation(fields:[placeId], references:[id])
+
+  placeId String
+
+  @@unique([userId, placeId])
+
+
+}
+
+

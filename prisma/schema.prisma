@@ -28,6 +28,7 @@ enum UserRole{
   GENERAL
 }
 
+
 model User{
 
   id String @id @default(cuid())
@@ -77,6 +78,18 @@ model Recipe{
 
   createdAt DateTime @default(now())
 
+  //update fields for future features
+
+  imageUrl String? // store image
+
+  latitude Float? // for map
+
+  longitude Float? // for map
+
+  tags String[]  // filtering 
+
+  description String? 
+  
 
   //relations
 
@@ -125,6 +138,19 @@ model Place{
   maxPrice Float?
 
   createdAt DateTime @default(now())
+
+
+  //update fields for future features
+  imageUrl String? // store image
+
+  latitude Float? // for map
+
+  longitude Float? // for map
+
+  tags String[]  // filtering 
+
+  description String? 
+
 
   //relations
 

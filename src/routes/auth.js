@@ -12,6 +12,8 @@ router.get("/", (req, res) => {
 
 })
 
+
+// Sign Up API Route
 router.post("/signup", async (req, res) => {
 
     try{
@@ -53,6 +55,58 @@ router.post("/signup", async (req, res) => {
 
     }
 
+
+})
+
+
+// Login API route
+
+router.post("/login", async(req, res) => {
+
+    try{
+
+        const{ email, password} = req.body;
+
+        //Find user by email
+
+        const user = await prisma.user.findUnique({ // use unique because email is unique in database
+            where: { email: email}
+        })
+
+        //Check if user exist
+
+        if(!user){
+
+            return res.status(401).json({ error: "Invalid email or password" });
+
+        }
+
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+
+        if(!isPasswordValid){
+
+            return res.status(401).json({error: "Invalid email or password"})
+        }
+
+        //if success
+
+        res.status(200).json({
+            message: "Login successful! Welcome back",
+            user: {
+                id: user.id,
+                username: user.username,
+                email: user.email
+
+            }
+        });
+
+    }
+
+    catch(error){
+
+        res.status(500).json({ error: "Something went wrong on the server"})
+
+    }
 
 })
 

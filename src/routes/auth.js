@@ -1,6 +1,7 @@
 import express from "express"
 import bcrypt from 'bcrypt';
 import { PrismaClient } from "@prisma/client"
+import jwt from 'jsonwebtoken'
 
 const prisma = new PrismaClient();
 const router = express.Router();
@@ -45,7 +46,7 @@ router.post("/signup", async (req, res) => {
 
         });
 
-        res.status(201).json({message: "Student accounr created!", user})
+        res.status(201).json({message: "Student account created!", user})
 
     }
 
@@ -88,6 +89,16 @@ router.post("/login", async(req, res) => {
             return res.status(401).json({error: "Invalid email or password"})
         }
 
+        //sign token 
+
+        const token = jwt.sign(
+
+            { userId: user.id, email: user.email },
+            process.env.JWT_SECRET,
+            { expiresIn: '7d'}
+
+        );
+
         //if success
 
         res.status(200).json({
@@ -96,8 +107,8 @@ router.post("/login", async(req, res) => {
                 id: user.id,
                 username: user.username,
                 email: user.email
-
-            }
+            },
+            token
         });
 
     }

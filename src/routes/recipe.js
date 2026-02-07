@@ -65,7 +65,7 @@ router.post("/postrecipe", protect, async(req, res) => {
                 ingredients,
                 instructions,
                 cost,
-                userId: req.user.userId
+                user: req.user.userId
 
             }
 

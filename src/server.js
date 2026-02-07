@@ -1,5 +1,6 @@
 import express from 'express'
-import router from './routes/auth.js'
+import authRouter from './routes/auth.js'
+import recipeRouter from './routes/recipe.js'
 import dotenv from 'dotenv'
 import cors from 'cors'
 
@@ -14,7 +15,8 @@ app.use(cors());
 app.use(express.json());
 
 //Routes
-app.use('/auth', router)
+app.use('/api/auth', authRouter)
+app.use('/api/recipe', recipeRouter)
 
 
 //Test Route

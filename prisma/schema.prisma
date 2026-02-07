@@ -47,16 +47,22 @@ model User{
 
   createdAt DateTime @default(now())
 
+  updatedAT DateTime @updatedAt
+
+  deletedAt DateTime?
+
 
   //relations
 
   authoredRecipe Recipe[]
 
-  addedPlace Place[]
+  addedPlace Place[] @relation("AddedPlaces")
 
   savedRecipes SavedRecipe[]
 
   savedPlaces SavedPlace[]
+
+  
 
 
 }
@@ -78,6 +84,10 @@ model Recipe{
 
   createdAt DateTime @default(now())
 
+  updatedAt DateTime @updatedAt 
+
+  deletedAt DateTime?
+
   //update fields for future features
 
   imageUrl String? // store image
@@ -89,6 +99,17 @@ model Recipe{
   tags String[]  // filtering 
 
   description String? 
+
+  viewCount Int @default(0)
+
+  saveCount Int @default(0)
+
+  // Indexes
+  @@index([userId])
+  @@index([createdAt])
+  @@index([deletedAt])
+
+
   
 
   //relations
@@ -117,6 +138,7 @@ model SavedRecipe{
   recipeId String
 
   @@unique([userId, recipeId])
+  @@index([userId])
 
 }
 
@@ -139,6 +161,10 @@ model Place{
 
   createdAt DateTime @default(now())
 
+  updatedAt DateTime @updatedAt 
+
+  deletedAt DateTime?
+
 
   //update fields for future features
   imageUrl String? // store image
@@ -150,19 +176,29 @@ model Place{
   tags String[]  // filtering 
 
   description String? 
+  
+  viewCount Int @default(0)
+
+  saveCount Int @default(0)
 
 
   //relations
 
   savedPlaces SavedPlace[]
 
-  addedBy User @relation(fields:[addedById], references: [id])
+  addedBy User @relation("AddedPlaces", fields:[addedById], references: [id])
 
   addedById String
 
-
+   // Indexes
+  @@index([addedById])
+  @@index([createdAt])
+  @@index([deletedAt])
+  @@index([placeType])
+  @@index([latitude, longitude])
 
 }
+
 
 
 model SavedPlace{
@@ -178,7 +214,7 @@ model SavedPlace{
   placeId String
 
   @@unique([userId, placeId])
-
+  @@index([userId])
 
 }
 

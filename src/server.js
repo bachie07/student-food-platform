@@ -2,6 +2,7 @@ import express from 'express'
 import authRouter from './routes/auth.js'
 import recipeRouter from './routes/recipe.js'
 import placeRouter from './routes/places.js'
+import savedRouter from './routes/saved.js'
 import dotenv from 'dotenv'
 import cors from 'cors'
 
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use('/api/auth', authRouter)
 app.use('/api/recipe', recipeRouter)
 app.use('/api/place', placeRouter)
+app.use('/api/saved', savedRouter)
 
 
 //Test Route

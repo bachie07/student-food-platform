@@ -1,20 +1,41 @@
-
-
+import { useState } from "react";
+import SignUpForm from "./components/SignUpForm";
+import { Link, Route, Routes } from "react-router-dom";
+import HomePage from "./pages/Home"
+import GroceriesPage from "./pages/Grocery";
+import RecipePage from "./pages/Recipe";
+import PlacesPage from "./pages/Place";
+import Layout from "./components/Layout";
+import LoginPage from "./pages/Auth/Login";
 
 function App() {
-  return (
-    <div className="min-h-screen bg-gray-100">
-      <div className="container mx-auto p-8">
-        <h1 className="text-4xl font-bold text-blue-600">
-          Adelaide Student Food Platform 
-        </h1>
-        <p className="mt-4 text-gray-700">
-          Frontend is ready! 🚀
-        </p>
-      </div>
-    </div>
-  )
-}
 
+    return (
+      <div>
+
+        <Routes>
+          <Route path="/" element={<Layout/>}>
+
+            <Route path="/" element={<HomePage/>}/>
+
+            <Route path="/groceries" element={<GroceriesPage/>}/>
+
+            <Route path="/recipes" element={<RecipePage/>}/>
+
+            <Route path="/eats" element={<PlacesPage/>}/>
+
+            <Route path="/login" element={<LoginPage/>}/>
+
+            <Route path="*" element={<h1>404 Not Found</h1>}/>
+
+          </Route>
+        </Routes>
+
+      </div>
+    );
+    }
+
+
+    
 export default App
 

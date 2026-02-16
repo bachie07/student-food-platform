@@ -4,11 +4,11 @@ const Navbar = () => {
 
     return(
 
-        <nav className="bg-red-900 text-white px-6 py-10 shadow-md">
+        <nav className="sticky top-0 z-50 bg-red-800 text-white px-6 py-8 shadow-md">
 
                 <div className="max-w-[1400px] mx-auto flex items-center">
 
-                    <div className="text-5xl font-bold"> yumME</div>
+                    <div className="text-5xl font-bold"> optiMEALS</div>
 
                     <div className="ml-40 space-x-20">
 
@@ -24,8 +24,7 @@ const Navbar = () => {
                 
                     </div> 
 
-
-                    <Link to="/login" className="ml-auto hover:text-gray-300 transition-colors  text-[25px]">  Login / Signup </Link>
+                    <Link to="/login" className="ml-auto hover:text-gray-300 transition-colors  text-[25px] ">  Login / Signup </Link>
 
 
             </div>

@@ -7,6 +7,9 @@ import RecipePage from "./pages/Recipe";
 import PlacesPage from "./pages/Place";
 import Layout from "./components/Layout";
 import LoginPage from "./pages/Auth/Login";
+import SignUpPage from "./pages/Auth/Signup";
+import BottomBar from "./components/BottomBar";
+
 
 function App() {
 
@@ -24,11 +27,14 @@ function App() {
 
             <Route path="/eats" element={<PlacesPage/>}/>
 
-            <Route path="/login" element={<LoginPage/>}/>
-
             <Route path="*" element={<h1>404 Not Found</h1>}/>
 
           </Route>
+
+          <Route path="/login" element={<LoginPage/>}/>
+
+          <Route path="/signup" element={<SignUpPage/>}/>
+
         </Routes>
 
       </div>

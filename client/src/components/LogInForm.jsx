@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { login } from "../services/api"
+import { useAuth } from "../context/AuthContext";
 
 export default function LogInForm(){
 
@@ -10,7 +11,7 @@ export default function LogInForm(){
 
     const [loginError, setLoginError] = useState("")
 
-    const navigate = useNavigate(); 
+    const { loginAction } = useAuth();
     
     async function onSubmit(data){
 
@@ -18,13 +19,7 @@ export default function LogInForm(){
 
         setLoginError("")
 
-        const result = await login(data.email, data.password);
-
-        localStorage.setItem('token', result.token);
-
-        localStorage.setItem('user', JSON.stringify(result.user));
-
-        navigate('/');
+        await loginAction(data)
     }
 
     catch(error){

@@ -9,6 +9,9 @@ import Layout from "./components/Layout";
 import LoginPage from "./pages/Auth/Login";
 import SignUpPage from "./pages/Auth/Signup";
 import BottomBar from "./components/BottomBar";
+import PrivateRoute from "./components/PrivateRoute";
+import SavedPage from "./pages/Saved";
+import RecipeDetail from "./pages/Recipe/detail";
 
 
 function App() {
@@ -28,6 +31,10 @@ function App() {
             <Route path="/eats" element={<PlacesPage/>}/>
 
             <Route path="*" element={<h1>404 Not Found</h1>}/>
+
+            <Route path="/recipes/:id" element={<RecipeDetail/>}/>
+
+            <Route path="/saved" element={ <PrivateRoute><SavedPage/></PrivateRoute>}/>
 
           </Route>
 

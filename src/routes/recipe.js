@@ -45,6 +45,48 @@ router.get("/getrecipe", async(req, res) => {
 });
 
 
+//get recipe by id
+
+router.get("/getrecipe/:id", async(req, res) => {
+
+    const { id } = req.params;
+
+    try{
+
+    const recipe = await prisma.recipe.findUnique({
+
+        where: {
+
+            id: id,
+
+        },
+        include: {
+
+            user: {
+
+                select: {
+
+                    username: true,
+                    school: true
+                }
+            }
+        }
+
+    })
+
+    if(!recipe){
+        return res.status(404).json({message: "Recipe not found"})
+    }
+
+    res.json(recipe)
+
+} catch(error){
+
+    res.status(500).json({message: "Server error"})
+
+}})
+
+
 
 //Create Recipe endpoint
 

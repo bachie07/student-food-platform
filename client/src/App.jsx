@@ -12,6 +12,7 @@ import BottomBar from "./components/BottomBar";
 import PrivateRoute from "./components/PrivateRoute";
 import SavedPage from "./pages/Saved";
 import RecipeDetail from "./pages/Recipe/detail";
+import SearchPage from "./pages/Search";
 
 
 function App() {
@@ -33,6 +34,8 @@ function App() {
             <Route path="*" element={<h1>404 Not Found</h1>}/>
 
             <Route path="/recipes/:id" element={<RecipeDetail/>}/>
+
+            <Route path="/search" element={<SearchPage/>}/>
 
             <Route path="/saved" element={ <PrivateRoute><SavedPage/></PrivateRoute>}/>
 

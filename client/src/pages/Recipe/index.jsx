@@ -6,16 +6,48 @@ const RecipePage = () => {
 
   const [recipes, setRecipes] = useState([])
 
+  const [loading, setIsLoading] = useState(true)
+
+  const [error, setError] = useState(null)
+
   const API_URL = 'http://localhost:5001/api/recipe/getrecipe'
 
   useEffect(() => {
 
-    fetch(API_URL)
-    .then(res => res.json())
-    .then(data => setRecipes(data.recipes))
+    const fetchRecipes = async () => {
+
+      try{
+        setIsLoading(true)
+        setError(null);
+
+        const res = await fetch(API_URL);
+
+        if(!res.ok){
+          throw new Error(`Request failed: ${res.status} ${res.statusText}`)
+        }
+
+        const data = await res.json();
+
+        setRecipes(data.recipes ?? []);
+      }
+      catch(err){
+        setError(err.message || "Something went wrong");
+      }
+      finally{
+          setIsLoading(false);
+      }
+    }
+
+    fetchRecipes();
+    
     }, [])
+
   
-    console.log("Recipes returned", recipes)
+  if (loading) return <div> Loading</div>
+  if (error) return <div className="p-10 text-red-600">Error: {error}</div>
+  
+  
+  console.log("Recipes returned", recipes)
 
 
   return (
@@ -27,6 +59,8 @@ const RecipePage = () => {
     <div className="text-center mt-10"> 
 
     <h1 className="font-bold text-black text-[30px] font-serif mt-10"> Popular Recipes</h1>
+
+
 
     <h3 className=" text-gray-500"> {recipes.length} recipes</h3>
 

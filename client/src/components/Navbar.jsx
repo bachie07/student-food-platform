@@ -2,15 +2,21 @@ import { Link } from "react-router-dom"
 import { useAuth } from "../context/AuthContext";
 import { useState, useEffect} from 'react'
 import { Search } from "lucide-react"
+import { useNavigate } from "react-router-dom";
+import Dropdown from "./dropdown";
 
 const Navbar = () => {
 
-    const { user, token, logOut } = useAuth()
+    const navigate = useNavigate(); // navigate 
+
+    const { user, token } = useAuth() // for auth
 
     const [isScrolled, setIsScrolled] = useState(false);
 
+    const [ query, setQuery ] = useState("") // track query on change
 
-    useEffect(() => {
+
+    useEffect(() => { 
 
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50);
@@ -23,13 +29,21 @@ const Navbar = () => {
 
     }, []);
 
+    function handleSubmit(e){ // handleSubmit when user hit enter
+        
+        e.preventDefault();
+
+        navigate(`/search?q=${encodeURIComponent(query)}`) // use encodeURIComponent(query) to store query in search bar and navigate to search page
+
+    }
+
 
 
     return(
 
         <nav className={`sticky top-0 z-50 bg-red-800 text-white px-6 shadow-md transition-all duration-500 ${isScrolled ? "py-1" : "py-6"}`}>
 
-                <div className="max-w-[1600px] mx-auto">
+                <div className="max-w-full mx-auto">
 
                     <div className={`flex items-center justify-between ${ isScrolled ? "mb-1" : "mb-5" }`}>
 
@@ -45,8 +59,10 @@ const Navbar = () => {
                         </div>
                     ) : ( 
                         <div className="w-1/3 flex justify-end">
-                        <button onClick={logOut} className="rounded-full bg-white text-bold text-white text-center hover:bg-slate-200 transition-all">Logout</button>
+                        <h1 className="mt-2"> Munch time, {user.username}!</h1>
+                        <Dropdown/>
                         </div>
+                        
                     )}
 
                     </div>
@@ -65,18 +81,17 @@ const Navbar = () => {
 
                             <Link to="/eats" className="hover:text-gray-300 transition-colors  text-[20px] font-semibold">  Eats </Link>
 
-                            {token && ( 
-                                <>
-                                <Link to="/saved" className="hover:text-gray-300 transition-colors  text-[30px] font-semibold">Saved</Link>
-                                <span> Hi, {user.username}!</span>
-                                </>
-
-                            )}
+    
                         </div>
                         <div className="w-1/4 mr-5 relative">
 
+                            <form onSubmit={handleSubmit}>
+
                             <Search className="absolute left-3 top-1/3 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                            <input className="w-full pl-10 bg-transparent placeholder:text-slate-400 text-white text-sm border border-slate-200 rounded-lg px-1 py-1 transition duration-300 ease focus:outline-none focus:border-blue-500 hover:border-blue-300 shadow-sm focus:shadow mb-5"/>
+                            <input className="w-full pl-10 bg-transparent placeholder:text-slate-400 text-white text-sm border border-slate-200 rounded-lg px-1 py-1 transition duration-300 ease focus:outline-none focus:border-blue-500 hover:border-blue-300 shadow-sm focus:shadow mb-5"
+                            onChange={(e) => setQuery(e.target.value)}/>
+
+                            </form>
 
                         </div>
 

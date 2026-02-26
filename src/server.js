@@ -11,9 +11,29 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5001;
+const allowedOrigins = [
+    'http://localhost:5173',
+    'https://unimunch.vercel.app'
+]
 
 //Middleware
-app.use(cors());
+app.use(cors({
+    origin: function(origin, callback){
+        // no origin requests (postman, mobile apps)
+        if (!origin) return callback(null, true);
+
+        //check if origin is in allwoed list
+        if (allowedOrigins.includes(origin)){
+            callback(null, true);
+        } else{
+            callback(new Error('not allowed by cors'))
+        }
+    },
+    credentials: true
+}));
+
+
+
 app.use(express.json());
 
 //Routes

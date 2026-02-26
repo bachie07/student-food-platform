@@ -11,21 +11,31 @@ const RecipeDetail = () => {
 
     useEffect(() => { // hook to fetch backend using id 
 
-        fetch(`http://localhost:5001/api/recipe/getrecipe/${id}`)
+        fetch(`${import.meta.env.VITE_API_URL}/...`)
         .then(res => res.json())
         .then(data => setRecipe(data))
         .catch(err => {console.error(err); setError(err);})
 
     }, [id])
 
+    if(error){
+        return <div> Error, {error}</div>
+    }
+    else if(!recipe){
+
+        return<div>Loading</div>
+
+    }
 
 
-    if(!recipe) return <div>Loading</div>
+    const ingredientsArray = recipe.ingredients.split(',')
 
-    if(error) return <div> Error, {error}</div>
+    const instructionArray = recipe.instructions.split(/\d+\.\s/).filter(step => step.trim() !== "")
+
 
     console.log(recipe)
     console.log(recipe.ingredients)
+    console.log(ingredientsArray)
 
     return(
         <>
@@ -48,7 +58,7 @@ const RecipeDetail = () => {
 
             <div className="relative w-full h-full">
 
-            <img src={recipe.imageUrl} alt={recipe.title} className="absolute inset-0 w-full h-full object-cover" /> 
+            <img src={recipe.imageUrl} alt={recipe.title} className="absolute inset-0 w-full h-full object-cover" />
 
             </div>
 
@@ -57,29 +67,38 @@ const RecipeDetail = () => {
 
         <hr className="mt-10 bg-neutral" />
 
-        <div className="flex flex-col justify-start mt-10 ml-20 mr-20">
+        <div className="grid grid-cols-2 mt-10 max-w-7xl mx-auto">
 
-            
-            <div className=""> 
+            <div className="space-y-10">
 
-            <h1 className="text-bold font-serif text-[40px]"> Ingredients</h1>
+                <h1 className="text-bold font-serif text-[40px]"> Ingredients</h1>
 
-            
-
-
-2
-
-            </div>
-
-            <div>
-
-
+                <ul className="list-disc list-inside space-y-4 font-serif text-[20px]">
+                    {ingredientsArray.map((item, index) => 
+                    <li key={index}>{item}</li>)}
+                </ul>
 
             </div>
 
+            <div className="space-y-10">
 
+                <h1 className="text-bold font-serif text-[40px]"> Instructions</h1>
+                
+                <ol className="list-decimal list-inside space-y-4 font-serif text-[20px]">
+                {instructionArray.map((item, index) => 
+                    <li key={index}> {item}</li>
+                    )}
+                    
+                </ol>
+
+            </div>
 
         </div>
+
+        <hr className="mt-10 bg-neutral" />
+
+        <div> hello</div>
+
         </>
 
 

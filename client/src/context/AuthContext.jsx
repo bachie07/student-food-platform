@@ -13,13 +13,11 @@ const AuthProvider = ({children}) => {
 
     const navigate = useNavigate();
 
-    const API_URL = 'http://localhost:5001/api'
-
     const loginAction = async (data) => {
 
         try {
 
-        const response = await fetch(`${API_URL}/auth/login`, { // fetch backend api , with post request
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/login`, { // fetch backend api , with post request
  
         method: 'POST',
         headers: {

@@ -13,6 +13,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import SavedPage from "./pages/Saved";
 import RecipeDetail from "./pages/Recipe/detail";
 import SearchPage from "./pages/Search";
+import ProfilePage from "./pages/Profile";
 
 
 function App() {
@@ -34,6 +35,8 @@ function App() {
             <Route path="*" element={<h1>404 Not Found</h1>}/>
 
             <Route path="/recipes/:id" element={<RecipeDetail/>}/>
+
+            <Route path="/userProfile" element={<ProfilePage/>}/>
 
             <Route path="/search" element={<SearchPage/>}/>
 

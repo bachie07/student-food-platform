@@ -5,11 +5,7 @@ const SignUpPage = () => {
 
     return( 
 
-        <div className="flex justify-center items-center"> 
-        
-        <SignUpForm/> 
-        
-        </div> 
+        <div></div>
 
     )
 }

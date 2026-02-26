@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import recipe from "../../assets/recipe.jpg"
 
+ 
 
 const RecipePage = () => {
 
@@ -10,7 +12,6 @@ const RecipePage = () => {
 
   const [error, setError] = useState(null)
 
-  const API_URL = 'http://localhost:5001/api/recipe/getrecipe'
 
   useEffect(() => {
 
@@ -20,7 +21,7 @@ const RecipePage = () => {
         setIsLoading(true)
         setError(null);
 
-        const res = await fetch(API_URL);
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/...`);
 
         if(!res.ok){
           throw new Error(`Request failed: ${res.status} ${res.statusText}`)
@@ -39,11 +40,10 @@ const RecipePage = () => {
     }
 
     fetchRecipes();
-    
+
     }, [])
 
   
-  if (loading) return <div> Loading</div>
   if (error) return <div className="p-10 text-red-600">Error: {error}</div>
   
   
@@ -53,14 +53,14 @@ const RecipePage = () => {
   return (
     
     <div className="min-h-screen bg-gray-50">
+    
+    <div><img src={recipe}></img></div>
 
     <section className=" flex justify-center"> 
 
     <div className="text-center mt-10"> 
 
     <h1 className="font-bold text-black text-[30px] font-serif mt-10"> Popular Recipes</h1>
-
-
 
     <h3 className=" text-gray-500"> {recipes.length} recipes</h3>
 
@@ -78,7 +78,6 @@ const RecipePage = () => {
           <img src={recipe.imageUrl} alt={recipe.title} className="w-full h-full object-cover rounded-md mb-4" />
 
           <h1 className="mb-2 text-2xl font-serif font-bold text-gray-900"> {recipe.title}</h1>
-
           
 
         </div>

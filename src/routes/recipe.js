@@ -40,7 +40,7 @@ router.get("/getrecipe", async(req, res) => {
 
         })
 
-    res.status(201).json({ message:"Recipes retreived", recipes})
+    res.status(200).json({ message:"Recipes retreived", recipes})
 
 });
 

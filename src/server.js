@@ -11,27 +11,40 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5001;
+
 const allowedOrigins = [
     'http://localhost:5173',
-    'https://unimunch.vercel.app'
+    'https://unimunch.vercel.app',
+    /^https:\/\/unimunch-.*\.vercel\.app$/
 ]
 
 //Middleware
+//Middleware
 app.use(cors({
     origin: function(origin, callback){
-        // no origin requests (postman, mobile apps)
+        // Allow requests with no origin (Postman, mobile apps)
         if (!origin) return callback(null, true);
 
-        //check if origin is in allwoed list
-        if (allowedOrigins.includes(origin)){
+        // Check if origin matches any allowed pattern
+        const isAllowed = allowedOrigins.some(allowed => {
+            if (typeof allowed === 'string') {
+                return allowed === origin;  // Exact string match
+            }
+            if (allowed instanceof RegExp) {
+                return allowed.test(origin);  // Regex match
+            }
+            return false;
+        });
+
+        if (isAllowed) {
             callback(null, true);
-        } else{
-            callback(new Error('not allowed by cors'))
+        } else {
+            console.log('Blocked origin:', origin);  // Debug log
+            callback(new Error('Not allowed by CORS'));
         }
     },
     credentials: true
 }));
-
 
 
 app.use(express.json());

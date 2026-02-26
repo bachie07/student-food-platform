@@ -11,7 +11,7 @@ const RecipeDetail = () => {
 
     useEffect(() => { // hook to fetch backend using id 
 
-        fetch(`${import.meta.env.VITE_API_URL}/...`)
+        fetch(`${import.meta.env.VITE_API_URL}/${id}`)
         .then(res => res.json())
         .then(data => setRecipe(data))
         .catch(err => {console.error(err); setError(err);})

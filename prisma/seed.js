@@ -20,7 +20,13 @@ async function main() {
     },
   });
 
-  console.log('✅ Seed user created');
+  console.log('Seed user created');
+
+  await prisma.recipe.deleteMany({
+    where: { userId: seedUser.id }
+  });
+
+  console.log('cleared exisiting seed')
 
   // 25 Recipes
   const recipes = [
@@ -304,6 +310,317 @@ async function main() {
       imageUrl: 'https://images.unsplash.com/photo-1764024945383-1a50f23aad92?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       userId: seedUser.id,
     },
+
+    // NEW: 30 Additional Recipes
+
+// ASIAN CUISINE
+{
+    title: 'Crispy Korean Fried Chicken',
+    ingredients: '500g chicken wings ($6.00), 1/2 cup cornstarch ($0.40), 3 tbsp gochujang ($0.60), 2 tbsp honey ($0.40), 2 tbsp soy sauce ($0.20), garlic ($0.20), sesame seeds ($0.20)',
+    instructions: '1. Pat chicken dry, coat in cornstarch. 2. Deep fry until crispy (12-15 min). 3. Mix gochujang, honey, soy sauce, minced garlic. 4. Toss fried chicken in sauce. 5. Garnish with sesame seeds.',
+    timeTaken: 'Prep: 10min, Cook: 20min',
+    cost: 8.00,
+    tags: ['korean', 'chicken', 'spicy', 'crispy'],
+    description: 'better than any takeaway kfc',
+    imageUrl: 'https://images.pexels.com/photos/2313686/pexels-photo-2313686.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900',
+    userId: seedUser.id,
+  },
+  {
+    title: 'Authentic Vietnamese Pho',
+    ingredients: '300g beef slices ($4.50), 200g rice noodles ($1.50), 4 cups beef stock ($2.00), star anise ($0.30), ginger ($0.30), fish sauce ($0.20), bean sprouts ($0.80), basil & lime ($0.60)',
+    instructions: '1. Simmer stock with star anise, ginger for 20 min. 2. Cook rice noodles separately. 3. Blanch beef slices in hot stock. 4. Assemble: noodles, beef, pour hot stock. 5. Top with bean sprouts, basil, lime, chili.',
+    timeTaken: 'Prep: 15min, Cook: 25min',
+    cost: 10.20,
+    tags: ['vietnamese', 'soup', 'beef', 'noodles'],
+    description: 'hangover cure that actually works',
+    imageUrl: 'https://images.unsplash.com/photo-1590420882553-4f9150b71f92?q=80&w=2065&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    userId: seedUser.id,
+  },
+  {
+    title: 'Japanese Chicken Katsu Curry',
+    ingredients: '2 chicken breasts ($5.00), 1 cup panko breadcrumbs ($1.00), 1 egg ($0.40), flour ($0.20), 2 tbsp curry powder ($0.60), 1 onion ($0.60), 2 carrots ($0.80), rice ($0.80)',
+    instructions: '1. Pound chicken thin, coat in flour, egg, panko. 2. Fry until golden. 3. Make curry: fry onion, carrot, add curry powder and water, simmer 15 min. 4. Slice katsu, serve over rice with curry.',
+    timeTaken: 'Prep: 15min, Cook: 25min',
+    cost: 9.40,
+    tags: ['japanese', 'chicken', 'curry', 'rice'],
+    description: 'japanese comfort food done right',
+    imageUrl: 'https://images.unsplash.com/photo-1679279727895-bd5c9fb9c1a0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    userId: seedUser.id,
+  },
+  {
+    title: 'Thai Basil Beef Stir Fry',
+    ingredients: '300g beef strips ($4.50), 2 cups Thai basil ($1.50), 3 garlic cloves ($0.15), 2 Thai chilies ($0.20), 2 tbsp fish sauce ($0.20), 1 tbsp oyster sauce ($0.15), jasmine rice ($0.80)',
+    instructions: '1. Cook rice. 2. Heat wok to smoking hot. 3. Stir-fry beef until browned, remove. 4. Fry garlic and chilies. 5. Add beef back, add sauces. 6. Toss in basil until wilted. 7. Serve over rice.',
+    timeTaken: 'Prep: 10min, Cook: 8min',
+    cost: 7.50,
+    tags: ['thai', 'beef', 'spicy', 'quick', 'asian'],
+    description: 'spicy af but so good',
+    imageUrl: 'https://images.pexels.com/photos/725997/pexels-photo-725997.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900',
+    userId: seedUser.id,
+  },
+  {
+    title: 'Chinese Honey Sesame Chicken',
+    ingredients: '400g chicken thigh ($4.80), 1/4 cup honey ($0.80), 3 tbsp soy sauce ($0.30), 2 tbsp rice vinegar ($0.20), sesame oil ($0.10), 2 tbsp sesame seeds ($0.40), cornstarch ($0.20), rice ($0.80)',
+    instructions: '1. Cut chicken into chunks, coat in cornstarch. 2. Fry until crispy. 3. Mix honey, soy sauce, vinegar, sesame oil in pan. 4. Toss chicken in sauce until glazed. 5. Sprinkle sesame seeds. 6. Serve over rice.',
+    timeTaken: 'Prep: 10min, Cook: 15min',
+    cost: 7.60,
+    tags: ['chinese', 'chicken', 'sweet', 'asian'],
+    description: 'sweet sticky perfection',
+    imageUrl: 'https://images.pexels.com/photos/2313686/pexels-photo-2313686.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900',
+    userId: seedUser.id,
+  },
+  {
+    title: 'Singapore Chili Crab Noodles',
+    ingredients: '300g crab meat ($8.00), 200g egg noodles ($1.50), 1/2 cup chili sauce ($0.80), 2 tbsp tomato paste ($0.30), 3 garlic cloves ($0.15), ginger ($0.30), spring onions ($0.40), egg ($0.40)',
+    instructions: '1. Cook noodles. 2. Fry garlic, ginger. 3. Add chili sauce, tomato paste, 1/2 cup water. 4. Add crab, simmer 5 min. 5. Crack egg into sauce, stir gently. 6. Toss noodles in sauce, top with spring onions.',
+    timeTaken: 'Prep: 10min, Cook: 15min',
+    cost: 11.85,
+    tags: ['singaporean', 'seafood', 'spicy', 'noodles'],
+    description: 'worth every dollar',
+    imageUrl: 'https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900',
+    userId: seedUser.id,
+  },
+  {
+    title: 'Malaysian Nasi Lemak Bowl',
+    ingredients: '2 cups rice ($0.80), 1 can coconut milk ($2.00), pandan leaf ($0.50), 2 eggs ($0.80), 1/2 cup peanuts ($0.80), cucumber ($0.60), sambal ($1.00), ikan bilis ($1.50)',
+    instructions: '1. Cook rice with coconut milk and pandan. 2. Hard boil eggs, slice. 3. Roast peanuts. 4. Fry ikan bilis until crispy. 5. Assemble bowl: coconut rice, egg, peanuts, ikan bilis, cucumber, sambal.',
+    timeTaken: 'Prep: 10min, Cook: 25min',
+    cost: 8.00,
+    tags: ['malaysian', 'rice', 'coconut', 'spicy'],
+    description: 'malaysian breakfast king',
+    imageUrl: 'https://images.unsplash.com/photo-1666239308347-4292ea2ff777?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    userId: seedUser.id,
+  },
+  {
+    title: 'Taiwanese Beef Noodle Soup',
+    ingredients: '300g beef shank ($4.50), 200g thick noodles ($1.50), 4 cups beef stock ($2.00), 3 tbsp soy sauce ($0.30), 2 tbsp rice wine ($0.30), star anise ($0.30), bok choy ($1.00), spring onion ($0.20)',
+    instructions: '1. Braise beef in stock, soy sauce, wine, star anise for 1.5 hours until tender. 2. Cook noodles separately. 3. Blanch bok choy. 4. Assemble: noodles, beef, pour broth, top with bok choy and spring onions.',
+    timeTaken: 'Prep: 15min, Cook: 90min',
+    cost: 10.10,
+    tags: ['taiwanese', 'beef', 'soup', 'noodles', 'meal-prep'],
+    description: 'slow cook sunday vibes',
+    imageUrl: 'https://images.pexels.com/photos/1907244/pexels-photo-1907244.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900',
+    userId: seedUser.id,
+  },
+  
+  // ITALIAN/MEDITERRANEAN
+  {
+    title: 'Creamy Tuscan Chicken',
+    ingredients: '2 chicken breasts ($5.00), 1 cup cream ($1.50), 1 cup sun-dried tomatoes ($2.00), 2 cups spinach ($1.00), 4 garlic cloves ($0.20), parmesan ($1.50), pasta ($1.20)',
+    instructions: '1. Cook pasta. 2. Pan-fry chicken until golden, slice. 3. In same pan, fry garlic. 4. Add cream, sun-dried tomatoes, simmer. 5. Add spinach and parmesan until wilted. 6. Add chicken back, toss with pasta.',
+    timeTaken: 'Prep: 10min, Cook: 20min',
+    cost: 12.40,
+    tags: ['italian', 'chicken', 'pasta', 'creamy'],
+    description: 'restaurant quality at home',
+    imageUrl: 'https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900',
+    userId: seedUser.id,
+  },
+  {
+    title: 'Prosciutto & Arugula Pizza',
+    ingredients: '1 pizza base ($2.50), 1/2 cup tomato sauce ($0.40), 200g mozzarella ($3.00), 100g prosciutto ($3.50), 2 cups arugula ($1.50), parmesan ($1.00), balsamic glaze ($0.60)',
+    instructions: '1. Spread sauce on base, add mozzarella. 2. Bake at 220°C for 12 min. 3. Top with prosciutto and fresh arugula. 4. Shave parmesan over top. 5. Drizzle balsamic glaze.',
+    timeTaken: 'Prep: 5min, Cook: 12min',
+    cost: 12.50,
+    tags: ['italian', 'pizza', 'prosciutto', 'quick'],
+    description: 'fancy pizza night',
+    imageUrl: 'https://images.pexels.com/photos/315755/pexels-photo-315755.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900',
+    userId: seedUser.id,
+  },
+  {
+    title: 'Seafood Linguine Marinara',
+    ingredients: '200g linguine ($1.20), 200g mixed seafood ($6.00), 1 can crushed tomatoes ($1.20), 4 garlic cloves ($0.20), white wine ($1.00), chili flakes ($0.10), parsley ($0.60), olive oil ($0.50)',
+    instructions: '1. Cook linguine. 2. Fry garlic and chili in olive oil. 3. Add white wine, reduce. 4. Add tomatoes, simmer 10 min. 5. Add seafood, cook 3-4 min. 6. Toss with pasta, garnish with parsley.',
+    timeTaken: 'Prep: 10min, Cook: 20min',
+    cost: 10.80,
+    tags: ['italian', 'seafood', 'pasta', 'tomato'],
+    description: 'seafood pasta done right',
+    imageUrl: 'https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900',
+    userId: seedUser.id,
+  },
+  
+  // MEXICAN/LATIN
+  {
+    title: 'Beef Barbacoa Tacos',
+    ingredients: '500g beef chuck ($6.00), 3 chipotle peppers ($0.80), 4 garlic cloves ($0.20), cumin ($0.20), oregano ($0.20), lime ($0.50), 8 corn tortillas ($1.60), onion & cilantro ($0.60)',
+    instructions: '1. Blend chipotles, garlic, cumin, oregano, lime juice. 2. Coat beef, slow cook 4 hours until tender. 3. Shred beef. 4. Warm tortillas. 5. Assemble tacos with beef, diced onion, cilantro, lime.',
+    timeTaken: 'Prep: 15min, Cook: 240min',
+    cost: 10.10,
+    tags: ['mexican', 'beef', 'tacos', 'slow-cook', 'meal-prep'],
+    description: 'meal prep king',
+    imageUrl: 'https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900',
+    userId: seedUser.id,
+  },
+  {
+    title: 'Chicken Enchiladas Verde',
+    ingredients: '400g chicken thigh ($4.80), 8 tortillas ($1.60), 2 cups green salsa ($2.50), 2 cups cheese ($2.40), 1 cup sour cream ($1.50), jalapeños ($0.80), cilantro ($0.40)',
+    instructions: '1. Cook and shred chicken. 2. Mix chicken with 1 cup salsa and half the cheese. 3. Fill tortillas, roll up. 4. Place in baking dish, pour remaining salsa, top with cheese. 5. Bake 20 min at 180°C. 6. Top with sour cream, jalapeños, cilantro.',
+    timeTaken: 'Prep: 20min, Cook: 30min',
+    cost: 14.00,
+    tags: ['mexican', 'chicken', 'baked', 'cheesy'],
+    description: 'cheesy mexican heaven',
+    imageUrl: 'https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900',
+    userId: seedUser.id,
+  },
+  {
+    title: 'Carne Asada Fries',
+    ingredients: '300g flank steak ($5.00), 4 large potatoes ($2.00), 1 cup cheese ($1.20), 1/2 cup guacamole ($1.50), 1/2 cup sour cream ($0.75), pico de gallo ($1.00), lime ($0.50)',
+    instructions: '1. Marinate steak in lime, garlic, cumin. 2. Cut potatoes into fries, bake until crispy (30 min at 220°C). 3. Grill steak, slice thin. 4. Layer: fries, cheese, steak. 5. Broil until cheese melts. 6. Top with guac, sour cream, pico.',
+    timeTaken: 'Prep: 15min, Cook: 35min',
+    cost: 11.95,
+    tags: ['mexican', 'beef', 'fries', 'loaded'],
+    description: 'loaded fries game changer',
+    imageUrl: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900',
+    userId: seedUser.id,
+  },
+  
+  // INDIAN/MIDDLE EASTERN
+  {
+    title: 'Butter Chicken (Restaurant Style)',
+    ingredients: '600g chicken thigh ($7.20), 2 cans crushed tomatoes ($2.40), 1 cup cream ($1.50), 100g butter ($1.50), 4 garlic cloves ($0.20), ginger ($0.40), garam masala ($0.60), kasuri methi ($0.40), rice ($0.80)',
+    instructions: '1. Marinate chicken in yogurt and spices. 2. Grill or pan-fry chicken. 3. Make sauce: fry garlic, ginger, add tomatoes, simmer 15 min, blend. 4. Add cream, butter, kasuri methi. 5. Add chicken, simmer 10 min. 6. Serve with rice.',
+    timeTaken: 'Prep: 20min, Cook: 35min',
+    cost: 15.00,
+    tags: ['indian', 'chicken', 'curry', 'creamy'],
+    description: 'better than any indian restaurant',
+    imageUrl: 'https://images.pexels.com/photos/2474661/pexels-photo-2474661.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900',
+    userId: seedUser.id,
+  },
+  {
+    title: 'Lamb Rogan Josh',
+    ingredients: '500g lamb shoulder ($8.00), 2 onions ($1.20), 1 can crushed tomatoes ($1.20), 1 cup yogurt ($1.00), 4 garlic cloves ($0.20), ginger ($0.40), curry powder ($0.60), kashmiri chili ($0.40), rice ($0.80)',
+    instructions: '1. Brown lamb pieces. 2. Fry onions until golden. 3. Add garlic, ginger, spices, fry 2 min. 4. Add tomatoes and yogurt. 5. Add lamb, simmer 1.5 hours until tender. 6. Serve with rice.',
+    timeTaken: 'Prep: 15min, Cook: 90min',
+    cost: 13.80,
+    tags: ['indian', 'lamb', 'curry', 'slow-cook'],
+    description: 'lamb curry worth the wait',
+    imageUrl: 'https://images.pexels.com/photos/2474661/pexels-photo-2474661.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900',
+    userId: seedUser.id,
+  },
+  {
+    title: 'Chicken Shawarma Wrap',
+    ingredients: '400g chicken thigh ($4.80), 4 pita breads ($1.60), 1 cup tahini ($1.50), 2 garlic cloves ($0.10), lemon ($0.50), lettuce ($0.80), tomato ($1.00), pickles ($0.80), sumac ($0.40)',
+    instructions: '1. Marinate chicken in garlic, lemon, sumac, cumin. 2. Grill chicken, slice thin. 3. Make tahini sauce: tahini, garlic, lemon juice, water. 4. Warm pita. 5. Assemble: pita, lettuce, tomato, chicken, pickles, tahini sauce.',
+    timeTaken: 'Prep: 15min, Cook: 12min',
+    cost: 11.50,
+    tags: ['middle-eastern', 'chicken', 'wrap', 'quick'],
+    description: 'shawarma spot at home',
+    imageUrl: 'https://images.unsplash.com/photo-1734772591537-15ac1b3b3c04?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    userId: seedUser.id,
+  },
+  {
+    title: 'Lamb Kofta with Mint Yogurt',
+    ingredients: '500g lamb mince ($6.00), 1 onion ($0.60), 2 garlic cloves ($0.10), cumin ($0.20), coriander ($0.20), 1 cup Greek yogurt ($1.50), fresh mint ($0.60), pita ($1.00), salad ($1.50)',
+    instructions: '1. Mix lamb, grated onion, garlic, cumin, coriander, salt. 2. Form into kofta shapes around skewers. 3. Grill or pan-fry 8-10 min. 4. Mix yogurt with chopped mint, garlic, lemon. 5. Serve with pita, salad, mint yogurt.',
+    timeTaken: 'Prep: 15min, Cook: 10min',
+    cost: 11.70,
+    tags: ['middle-eastern', 'lamb', 'grilled', 'healthy'],
+    description: 'kebab shop quality',
+    imageUrl: 'https://images.unsplash.com/photo-1763647818263-62a9256f097c?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    userId: seedUser.id,
+  },
+  
+  // WESTERN/AUSTRALIAN
+  {
+    title: 'Classic Aussie Meat Pie',
+    ingredients: '300g beef mince ($3.60), 1 onion ($0.60), 2 tbsp tomato sauce ($0.20), 2 tbsp worcestershire ($0.30), 1 cup beef stock ($0.50), 2 sheets puff pastry ($2.40), 1 egg ($0.40)',
+    instructions: '1. Brown mince and onion. 2. Add sauces and stock, simmer 20 min until thick. 3. Cool filling. 4. Line pie tin with pastry, fill with meat. 5. Top with pastry, brush with egg. 6. Bake 30 min at 200°C until golden.',
+    timeTaken: 'Prep: 15min, Cook: 50min',
+    cost: 8.00,
+    tags: ['australian', 'beef', 'pie', 'comfort-food'],
+    description: 'aussie classic done right',
+    imageUrl: 'https://images.unsplash.com/photo-1518311297794-ec7298ffba64?q=80&w=2012&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    userId: seedUser.id,
+  },
+  {
+    title: 'Fish & Chips with Tartare',
+    ingredients: '2 white fish fillets ($6.00), 4 potatoes ($2.00), 1 cup flour ($0.30), 1 cup beer ($1.50), 1/2 cup mayo ($0.60), 2 tbsp pickles ($0.40), capers ($0.50), lemon ($0.50)',
+    instructions: '1. Cut potatoes into chips, fry until golden. 2. Make batter: flour, beer, salt. 3. Coat fish, deep fry 4-5 min. 4. Make tartare: mayo, chopped pickles, capers, lemon. 5. Serve fish and chips with tartare and lemon.',
+    timeTaken: 'Prep: 15min, Cook: 20min',
+    cost: 11.80,
+    tags: ['australian', 'seafood', 'fried', 'classic'],
+    description: 'beach vibes at home',
+    imageUrl: 'https://images.unsplash.com/photo-1580217593608-61931cefc821?q=80&w=2231&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    userId: seedUser.id,
+  },
+  {
+    title: 'Gourmet Beef Burger',
+    ingredients: '400g beef mince ($4.80), 4 burger buns ($2.00), 4 cheese slices ($1.20), lettuce ($0.60), tomato ($1.00), onion ($0.40), pickles ($0.60), burger sauce ($0.80), bacon ($2.00)',
+    instructions: '1. Form mince into 4 patties, season well. 2. Fry bacon until crispy. 3. Cook patties 3-4 min each side, add cheese to melt. 4. Toast buns. 5. Assemble: bottom bun, sauce, lettuce, tomato, patty, cheese, bacon, onion, pickles, top bun.',
+    timeTaken: 'Prep: 10min, Cook: 12min',
+    cost: 13.40,
+    tags: ['australian', 'beef', 'burger', 'comfort-food'],
+    description: 'gourmet burger joint at home',
+    imageUrl: 'https://images.pexels.com/photos/1639562/pexels-photo-1639562.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900',
+    userId: seedUser.id,
+  },
+  {
+    title: 'BBQ Ribs with Coleslaw',
+    ingredients: '800g pork ribs ($9.00), 1 cup BBQ sauce ($2.00), 1/4 cabbage ($0.80), 1 carrot ($0.40), 1/2 cup mayo ($0.60), vinegar ($0.20), sugar ($0.10)',
+    instructions: '1. Rub ribs with salt, pepper, paprika. 2. Bake 2 hours at 160°C wrapped in foil. 3. Unwrap, brush with BBQ sauce, bake 30 min more. 4. Make coleslaw: shred cabbage and carrot, mix with mayo, vinegar, sugar. 5. Serve ribs with coleslaw.',
+    timeTaken: 'Prep: 15min, Cook: 150min',
+    cost: 13.10,
+    tags: ['australian', 'pork', 'bbq', 'slow-cook'],
+    description: 'bbq sunday vibes',
+    imageUrl: 'https://images.unsplash.com/photo-1560024818-2c6d122cfbe2?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    userId: seedUser.id,
+  },
+  {
+    title: 'Chicken Parmi (Parmigiana)',
+    ingredients: '2 chicken breasts ($5.00), 1 cup panko ($0.60), 1 egg ($0.40), 1 cup tomato sauce ($0.80), 200g mozzarella ($3.00), parmesan ($1.00), chips & salad to serve ($2.50)',
+    instructions: '1. Pound chicken flat, coat in flour, egg, panko. 2. Fry until golden. 3. Top with tomato sauce and cheeses. 4. Bake 15 min until cheese melts. 5. Serve with chips and salad.',
+    timeTaken: 'Prep: 15min, Cook: 25min',
+    cost: 13.30,
+    tags: ['australian', 'chicken', 'italian-australian', 'pub-food'],
+    description: 'pub classic at home',
+    imageUrl: 'https://images.pexels.com/photos/2474661/pexels-photo-2474661.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900',
+    userId: seedUser.id,
+  },
+  
+  // BREAKFAST/BRUNCH
+  {
+    title: 'Smashed Avo on Sourdough',
+    ingredients: '2 avocados ($5.00), 4 slices sourdough ($2.00), 2 eggs ($0.80), feta ($1.50), cherry tomatoes ($1.50), chili flakes ($0.10), lemon ($0.50)',
+    instructions: '1. Toast sourdough. 2. Mash avocados with lemon juice, salt, pepper. 3. Poach or fry eggs. 4. Spread avo on toast, top with egg. 5. Crumble feta, add halved cherry tomatoes, sprinkle chili flakes.',
+    timeTaken: 'Prep: 5min, Cook: 8min',
+    cost: 11.40,
+    tags: ['breakfast', 'brunch', 'vegetarian', 'avocado', 'healthy'],
+    description: 'melbourne brunch at home',
+    imageUrl: 'https://images.pexels.com/photos/566566/pexels-photo-566566.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900',
+    userId: seedUser.id,
+  },
+  {
+    title: 'Big Breakfast Fry-Up',
+    ingredients: '4 bacon rashers ($2.40), 4 sausages ($3.00), 4 eggs ($1.60), 2 tomatoes ($1.50), mushrooms ($1.50), 4 slices bread ($0.60), beans ($1.00)',
+    instructions: '1. Fry bacon and sausages. 2. Fry eggs in bacon fat. 3. Grill tomatoes and mushrooms. 4. Heat beans. 5. Toast bread. 6. Assemble everything on plate.',
+    timeTaken: 'Prep: 5min, Cook: 20min',
+    cost: 11.60,
+    tags: ['breakfast', 'english-breakfast', 'hearty'],
+    description: 'full english for champions',
+    imageUrl: 'https://images.unsplash.com/photo-1670275466352-3f17571fae5e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    userId: seedUser.id,
+  },
+  {
+    title: 'Fluffy Buttermilk Pancakes',
+    ingredients: '2 cups flour ($0.60), 2 tbsp sugar ($0.10), 2 tsp baking powder ($0.10), 1.5 cups buttermilk ($1.20), 2 eggs ($0.80), butter ($0.50), maple syrup ($2.00), berries ($3.00)',
+    instructions: '1. Mix flour, sugar, baking powder. 2. Whisk buttermilk, eggs, melted butter. 3. Combine wet and dry gently. 4. Cook pancakes in buttered pan. 5. Stack, top with butter, syrup, and berries.',
+    timeTaken: 'Prep: 10min, Cook: 15min',
+    cost: 8.30,
+    tags: ['breakfast', 'pancakes', 'sweet', 'american'],
+    description: 'stack goals achieved',
+    imageUrl: 'https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900',
+    userId: seedUser.id,
+  },
+  {
+    title: 'Chorizo & Egg Breakfast Burrito',
+    ingredients: '2 chorizo sausages ($2.40), 4 eggs ($1.60), 1 cup cheese ($1.20), 4 flour tortillas ($0.80), 1 avocado ($2.50), salsa ($1.00), sour cream ($0.75)',
+    instructions: '1. Slice and fry chorizo. 2. Scramble eggs. 3. Warm tortillas. 4. Fill with chorizo, eggs, cheese. 5. Add sliced avocado, salsa. 6. Roll into burrito, serve with sour cream.',
+    timeTaken: 'Prep: 5min, Cook: 10min',
+    cost: 10.25,
+    tags: ['breakfast', 'mexican', 'burrito', 'quick'],
+    description: 'breakfast burrito game strong',
+    imageUrl: 'https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900',
+    userId: seedUser.id,
+  },
   ];
 
   console.log('Seeding recipes...');
@@ -314,14 +631,7 @@ async function main() {
 
   console.log(`Seeded ${recipes.length} recipes`);
   console.log('Database seeded successfully!');
-  console.log(`
 
-Summary:
-- Recipes: ${recipes.length}
-  - Quick meals: 15
-  - Meal prep: 5
-  - Vegetarian: 5 (spread throughout)
-  `);
 }
 
 main()

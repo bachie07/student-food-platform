@@ -52,6 +52,6 @@ app.get('/', (req, res) => {
 
 
 app.listen(
-    PORT,
+    PORT,'0.0.0.0',
     () => console.log(`it's alive on http://localhost:${PORT}`)
 )

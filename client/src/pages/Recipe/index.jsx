@@ -21,7 +21,7 @@ const RecipePage = () => {
         setIsLoading(true)
         setError(null);
 
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/...`);
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/recipe/getrecipe`);
 
         if(!res.ok){
           throw new Error(`Request failed: ${res.status} ${res.statusText}`)

@@ -49,6 +49,12 @@ app.use(cors({
 
 app.use(express.json());
 
+app.get('/health', (req, res) => res.status(200).send('OK'));
+
+app.get('/', (req, res) => {
+    res.send('Food Platform API is running!');
+});
+
 //Routes
 app.use('/api/auth', authRouter)
 app.use('/api/recipe', recipeRouter)
@@ -57,11 +63,6 @@ app.use('/api/saved', savedRouter)
 
 
 //Test Route
-
-app.get('/', (req, res) => {
-    res.send('Food Platform API is running!');
-});
-
 
 
 app.listen(

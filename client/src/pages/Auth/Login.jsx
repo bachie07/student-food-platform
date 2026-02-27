@@ -6,25 +6,25 @@ const LoginPage = () => {
 
     return ( 
 
-        <div className = "grid grid-cols-2 mx-auto h-screen"> 
+        <div className = "grid grid-cols-1 md:grid-cols-2 mx-auto h-screen gap-y-20"> 
 
-            <section className="bg-red-900 flex flex-col">
+            <section className="bg-red-900 flex flex-col h-20 md:h-full md:justify-center">
 
-                <h1 className="font-serif text-white text-center font-bold mt-40 text-[40px] px-10"> Discover easy & affordable recipes, groceries and eats near you</h1>
-                <div className="-mt-40 px-10">
-                    <img src={loginuiphoto} className="w-full h-auto object-contain translate-y-4" ></img>
+                <Link to="/" className="font serif text-white text-center font-bold text-3xl md:hidden">uniMunch</Link>
+                <h1 className="hidden md:block md:text-2xl font-serif text-white text-center font-bold text-lg px-2"> Discover easy & affordable recipes, groceries and eats near you</h1>
+                <div className="px-20">
+                    <img src={loginuiphoto} className="hidden md:block w-full h-auto object-contain -translate-y-18" ></img>
                 </div>
+                
             </section>
 
-            <section className="bg-white mt-20">
+            <section className="bg-white h-screen flex flex-col md:justify-center">
 
-                <div className="w-full px-16 mt-20">
+                <div className="w-full px-9">
 
                     <LogInForm/>
 
                 </div>
-
-                <div className="mt-20"> 
 
                 <div className="w-full px-16 mt-20">
 
@@ -34,8 +34,6 @@ const LoginPage = () => {
 
                 </div>
                                 
-                
-                </div>
 
             </section>
 

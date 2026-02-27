@@ -20,30 +20,30 @@ const HomePage = () => {
                 }];
 
     return(
-        <div> 
+        <div>
 
-        <section className="h-screen bg-cover bg-center relative flex items-center justify-center text-white"
+        <section className="h-screen bg-cover bg-center relative text-white"
         style={{ backgroundImage: `url(${heroImg})`}}> 
 
-        <div className="flex flex-col justify-center text-center items-center ">
+        <div className="flex flex-col text-center items-center space-y-10 py-20 px-4 md:min-h-screen md:justify-center md:py-0">
 
-            <div className="mt-10"> 
+            <div> 
 
-                <h1 className="mt-18 font-bold text-5xl">
+                <h1 className="font-bold text-2xl md:text-3xl">
                     Eat, cook, and shop food better
                 </h1>
 
             </div>
             
             <div className="mt-10">
-                <h2 className="font-semibold text-3xl max-w-4xl"> 
+                <h2 className="font-semibold text-lg md:text-2xl  max-w-4xl"> 
                     Find recipes that are easy to make, local groceries that saves you money, cafes & restaurants that are loved by local people. All community driven.
                 </h2>
             </div>
 
             <div className="mt-10">
 
-                <button className="px-10 py-4 rounded-xl text-xl font-bold bg-[#b20808] hover:bg-red-700 hover:scale-105 transition-all"
+                <button className="px-8 py-2 md:px-10 md:py-4 rounded-xl text-xl font-bold bg-[#b20808] hover:bg-red-700 hover:scale-105 transition-all"
                 onClick={() => navigate('/recipes')}> Get started </button>
                 
             </div>

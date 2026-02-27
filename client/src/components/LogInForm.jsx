@@ -33,7 +33,7 @@ export default function LogInForm(){
 
         <div className="w-full"> 
 
-        <h1 className="mb-4 text-bold text-[25px]"> Log In into optiMEAL</h1>
+        <h1 className="mb-4 text-bold text-[25px]"> Log In into uniMunch</h1>
 
         {loginError && (
             <p className="text-red-600 mb-4 text-sm">

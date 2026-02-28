@@ -21,6 +21,7 @@ const RecipeDetail = () => {
     if(error){
         return <div> Error, {error}</div>
     }
+
     else if(!recipe){
 
         return<div>Loading</div>
@@ -38,9 +39,9 @@ const RecipeDetail = () => {
     console.log(ingredientsArray)
 
     return(
-        <>
+        <div className="flex flex-col px-4">
 
-        <div className="grid grid-cols-2 h-screen w-full overflow-hidden"> 
+        <div className="grid grid-cols-1 md:grid-cols-2 min-h-[70vh] w-full overflow-hidden"> 
 
             <div className="flex items-center justify-center h-full"> 
 
@@ -51,29 +52,30 @@ const RecipeDetail = () => {
                 <h3 className="font-serif text-[15px] mb-5"> By {recipe.user.username}</h3>
 
                 <h3 className="font-serif text-gray-600 text-[15px]"> {recipe.timeTaken}</h3>
-
                 </div>
 
+                
             </div>
 
-            <div className="relative w-full h-full">
+            <hr className="bg-gray-500 block md:hidden"></hr>
 
-            <img src={recipe.imageUrl} alt={recipe.title} className="absolute inset-0 w-full h-full object-cover" />
+            <div className="relative w-full h-64 md:h-full">
+
+            <img src={recipe.imageUrl} alt={recipe.title} className="absolute inset-0 w-full h-full object-cover -translate-y-10 md:translate-y-0" />
 
             </div>
-
 
         </div>
 
-        <hr className="mt-10 bg-neutral" />
+        <hr className="bg-neutral" />
 
-        <div className="grid grid-cols-2 mt-10 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 mt-10 max-w-7xl mx-auto space-y-10 md:space-y-0">
 
             <div className="space-y-10">
 
-                <h1 className="text-bold font-serif text-[40px]"> Ingredients</h1>
+                <h1 className="text-bold font-serif text-2xl md:text-3xl"> Ingredients</h1>
 
-                <ul className="list-disc list-inside space-y-4 font-serif text-[20px]">
+                <ul className="list-disc list-inside space-y-2 md:space-y-4 font-serif text-lg">
                     {ingredientsArray.map((item, index) => 
                     <li key={index}>{item}</li>)}
                 </ul>
@@ -82,9 +84,9 @@ const RecipeDetail = () => {
 
             <div className="space-y-10">
 
-                <h1 className="text-bold font-serif text-[40px]"> Instructions</h1>
+                <h1 className="text-bold font-serif text-2xl md:text-3xl"> Instructions</h1>
                 
-                <ol className="list-decimal list-inside space-y-4 font-serif text-[20px]">
+                <ol className="list-decimal list-inside space-y-4 font-serif text-lg">
                 {instructionArray.map((item, index) => 
                     <li key={index}> {item}</li>
                     )}
@@ -97,9 +99,9 @@ const RecipeDetail = () => {
 
         <hr className="mt-10 bg-neutral" />
 
-        <div> hello</div>
+        
 
-        </>
+        </div>
 
 
     )

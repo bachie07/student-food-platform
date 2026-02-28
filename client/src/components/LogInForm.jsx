@@ -33,7 +33,7 @@ export default function LogInForm(){
 
         <div className="w-full"> 
 
-        <h1 className="mb-4 text-bold text-[25px]"> Log In into uniMunch</h1>
+        <h1 className="mb-4 text-bold text-2xl font-serif"> Log In into uniMunch</h1>
 
         {loginError && (
             <p className="text-red-600 mb-4 text-sm">
@@ -42,13 +42,15 @@ export default function LogInForm(){
         )}
         
         <form onSubmit={handleSubmit(onSubmit)}> 
-            
-            <div className="mb-2 w-full min-w-[200px]">
 
-                <label> 
+        <div className="flex flex-col gap-y-5">
+            
+            <div className="w-full">
+
+                <label className="font-serif"> 
                     Email
                 <input 
-                className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-lg border border-slate-200 rounded-lg px-4 py-5 transition duration-300 ease focus:outline-none focus:border-blue-500 hover:border-blue-300 shadow-sm focus:shadow" 
+                className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-md border border-slate-200 rounded-lg px-2 py-3 md:px-4 md:py-5 transition duration-300 ease focus:outline-none focus:border-blue-500 hover:border-blue-300 shadow-sm focus:shadow" 
                 type="email"  
                 placeholder="you@example.com" 
                 {...register("email", {
@@ -66,13 +68,13 @@ export default function LogInForm(){
 
             </div>
 
-            <div className="mb-5">
+            <div className="w-full">
 
-                <label>
+                <label className="font-serif">
                     Password
-                </label>
+               
                 <input 
-                className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-lg px-5 py-5 transition duration-300 ease focus:outline-none focus:border-blue-500 hover:border-blue-300 shadow-sm focus:shadow mb-5" 
+                className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-md border border-slate-200 rounded-lg px-2 py-3 md:px-4 md:py-5  transition duration-300 ease focus:outline-none focus:border-blue-500 hover:border-blue-300 shadow-sm focus:shadow mb-5" 
 
                 type="password" 
                 placeholder="......" 
@@ -88,6 +90,7 @@ export default function LogInForm(){
                     }
                 })}
                 />
+                </label>
 
                 {errors.password && (
                     <p>{errors.password.message}</p>
@@ -96,7 +99,9 @@ export default function LogInForm(){
 
             </div>
 
-            <button type="submit" className="px-10 py-5 font-bold text-white rounded-full bg-red-900 hover:bg-red-700 transition-all w-full"> Log In</button>
+            <button type="submit" className="px-2 py-3 md:px-10 md:py-5 font-bold text-white rounded-full bg-red-900 hover:bg-red-700 transition-all w-full"> Log In</button>
+
+            </div>
 
         </form>
 

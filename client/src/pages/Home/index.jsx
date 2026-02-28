@@ -22,10 +22,9 @@ const HomePage = () => {
     return(
         <div>
 
-        <section className="h-screen bg-cover bg-center relative text-white"
-        style={{ backgroundImage: `url(${heroImg})`}}> 
+        <section className="h-screen bg-cover bg-neutral bg-center relative text-white">
 
-        <div className="flex flex-col text-center items-center space-y-10 py-20 px-4 md:min-h-screen md:justify-center md:py-0">
+        <div className="text-black flex flex-col text-center items-center space-y-10 py-20 px-4 md:min-h-screen md:justify-center md:py-0">
 
             <div> 
 
@@ -43,7 +42,7 @@ const HomePage = () => {
 
             <div className="mt-10">
 
-                <button className="px-8 py-2 md:px-10 md:py-4 rounded-xl text-xl font-bold bg-[#b20808] hover:bg-red-700 hover:scale-105 transition-all"
+                <button className="px-8 py-2 md:px-10 md:py-4 rounded-xl text-white text-xl font-bold bg-[#b20808] hover:bg-red-700 hover:scale-105 transition-all"
                 onClick={() => navigate('/recipes')}> Get started </button>
                 
             </div>

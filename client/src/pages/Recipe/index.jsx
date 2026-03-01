@@ -61,7 +61,7 @@ const RecipePage = () => {
 
     <div className="text-center"> 
 
-    <h1 className="font-bold text-black text-xl md:text-2xl font-serif mt-10"> Explore Recipes</h1>
+    <h1 className="font-bold text-black text-xl md:text-2xl font-serif mt-10"> Featured Recipes</h1>
 
     <h3 className=" text-gray-500"> {recipes.length} recipes</h3>
 

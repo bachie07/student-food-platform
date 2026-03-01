@@ -14,6 +14,7 @@ import SavedPage from "./pages/Saved";
 import RecipeDetail from "./pages/Recipe/detail";
 import SearchPage from "./pages/Search";
 import ProfilePage from "./pages/Profile";
+import PostPage from "./pages/Post";
 
 
 function App() {
@@ -42,6 +43,8 @@ function App() {
 
             <Route path="/saved" element={ <PrivateRoute><SavedPage/></PrivateRoute>}/>
 
+            <Route path="/post" element={<PostPage/>}/>
+ 
           </Route>
 
           <Route path="/login" element={<LoginPage/>}/>

@@ -7,9 +7,9 @@ const SearchAndFilterBar = ({query}) => {
 
         <div className="flex flex-col justify-center items-center mt-10">
             
-            <h3 className="text-bold font-serif text-[20px] text-gray-700"> Search results for </h3>
+            <h3 className="text-bold font-serif text-md text-gray-700"> Search results for </h3>
 
-            <h1 className="font-bold font-serif text-[50px] text-black"> {query} </h1>
+            <h1 className="font-bold font-serif text-3xl text-black"> {query} </h1>
             
         </div>
 

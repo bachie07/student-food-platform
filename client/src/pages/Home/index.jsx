@@ -1,10 +1,56 @@
 import { useNavigate } from "react-router-dom";
-import heroImg from "../../assets/hero_section.jpg"
-
+import { useEffect, useState} from "react"
 
 const HomePage = () => {
 
     const navigate = useNavigate()
+
+    const [recipes, setRecipes] = useState([])
+
+    const [loading, setIsLoading] = useState(false)
+
+    const [error, setError] = useState(null)
+
+
+    useEffect(() => {
+
+        const fetchRecipes = async() => {
+            
+            try{
+
+                setIsLoading(true)
+                setError(null);
+
+                const res = await fetch(`${import.meta.env.VITE_API_URL}/recipe/featured`);
+
+                if(!res.ok){
+
+                    throw new Error(`Request failed: ${res.status} ${res.statusText}`)
+                }
+                
+                const data = await res.json();
+
+                setRecipes(data.recipes ?? [])
+            }
+
+            catch(err){
+                setError(err.message || "Something went wrong")
+            }
+            finally{
+                setIsLoading(false)
+            }
+
+        }
+
+        fetchRecipes();
+
+
+    },[])
+
+    console.log(recipes)
+
+    if (error) return <div className="p-10 text-red-600">Error: {error}</div>
+    if (loading) return <div></div>
 
 
     const contents =[{title: "Recipes", 
@@ -35,28 +81,29 @@ const HomePage = () => {
             </div>
             
             <div className="mt-10">
-                <h2 className="font-semibold text-lg md:text-2xl  max-w-4xl"> 
+                <h2 className=" text-lg md:text-2xl  max-w-4xl"> 
                     Find recipes that are easy to make, local groceries that saves you money, cafes & restaurants that are loved by local people. All community driven.
                 </h2>
             </div>
 
             <div className="mt-10">
 
-                <button className="px-8 py-2 md:px-10 md:py-4 rounded-xl text-white text-xl font-bold bg-[#b20808] hover:bg-red-700 hover:scale-105 transition-all"
+                <button className="px-9 py-2 md:px-10 md:py-4 rounded-xl text-white text-xl font-bold bg-[#b20808] hover:bg-red-700 hover:scale-105 transition-all"
                 onClick={() => navigate('/recipes')}> Get started </button>
                 
             </div>
         </div>
 
+        <div className="w-full flex flex-col items-center space-y-10">
+                <h1 className="text-black font-semibold font-serif"> Featured Recipes</h1>
+
+                <h1 className="text-black"> </h1>
+
+        </div>
+
+
+
         </section>
-
-        <section>
-
-
-
-        </section>
-
-
 
         </div>
     

@@ -5,8 +5,9 @@ import { Search } from "lucide-react"
 import { useNavigate } from "react-router-dom";
 import Dropdown from "./dropdown";
 import { Menu } from "lucide-react"
+import SideBar from "./Sidebar";
 
-const Navbar = () => {
+const Navbar = ({ onMenuClick}) => {
 
     const navigate = useNavigate(); // navigate 
 
@@ -41,14 +42,17 @@ const Navbar = () => {
 
     return(
 
-        <nav className={`sticky top-0 z-50 bg-white text-white px-6 py-1 shadow-md transition-all duration-500 sm:${isScrolled ? "py-1" : "py-6"}`}>
+        <nav className={`sticky top-0 z-50 bg-white text-black px-6 py-1 shadow-md transition-all duration-500 sm:${isScrolled ? "py-1" : "py-6"}`}>
 
                 <div className="max-w-full mx-auto flex-col space-y-3 mt-2">
 
                     <div className={`flex sm:${ isScrolled ? "mb-1" : "mb-5" }`}>
 
                         <div className="w-1/3 flex justify-start">
+                        <button onClick={onMenuClick}>
                         <Menu color="black" className="block sm:hidden md:hidden lg:hidden"/>
+                        </button>
+
                         </div>
                         
                         <div className="w-1/3 flex justify-center">
@@ -63,11 +67,13 @@ const Navbar = () => {
                         </div>
                     ) : ( 
                         <div className="w-1/3 flex justify-end">
-                        <h1 className="mt-2"> Munch time, {user.username}!</h1>
+                        <h1 className="mt-2 hidden md:block"> Munch time, {user.username}!</h1>
                         <Dropdown/>
+                        <Link className="black rounded-xl flex bg-red-700 w-1/2 text-sm text-white justify-center items-center" to="/post"> Post </Link>
                         </div>
                         
-                    )}<i class="fa fa-file-zip-o" aria-hidden="true"></i>
+                        
+                    )}
 
                     </div>
 
@@ -107,9 +113,11 @@ const Navbar = () => {
 
 
             </div>
-
     
         </nav>
+
+       
+
   
     )
 }

@@ -10,6 +10,8 @@ const router = express.Router();
 
 router.get("/getrecipe", async(req, res) => {
 
+    try{
+
     const recipes = await prisma.recipe.findMany({
 
         where: {
@@ -39,10 +41,50 @@ router.get("/getrecipe", async(req, res) => {
             }
 
         })
+    }
+    catch(error){
+        res.status(500).json({message: "Cant retreive recipes"})
+    }
 
     res.status(200).json({ message:"Recipes retreived", recipes})
 
 });
+
+router.get("/featured", async(req, res) => {
+
+    try{
+
+    const recipes = await prisma.recipe.findMany({
+
+        take: 10,
+
+        where: {
+
+            deletedAt: null
+            
+        },
+
+        select: {
+
+            title: true,
+            imageUrl: true,
+
+        },
+
+        orderBy: {
+            createdAt: 'desc'
+        }
+    }) 
+    res.status(200).json({message: "Recipes retreived", recipes})
+
+    }
+
+    catch(error){
+
+        res.status(500).json({message: "Can't retreive recipes"})
+    }
+
+})
 
 
 //get recipe by id

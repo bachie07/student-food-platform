@@ -41,12 +41,13 @@ router.get("/getrecipe", async(req, res) => {
             }
 
         })
+        res.status(200).json({ message:"Recipes retreived", recipes})
+
     }
     catch(error){
         res.status(500).json({message: "Cant retreive recipes"})
     }
 
-    res.status(200).json({ message:"Recipes retreived", recipes})
 
 });
 

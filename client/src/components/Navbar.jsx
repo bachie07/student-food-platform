@@ -69,7 +69,7 @@ const Navbar = ({ onMenuClick}) => {
                         <div className="w-1/3 flex justify-end">
                         <h1 className="mt-2 hidden md:block"> Munch time, {user.username}!</h1>
                         <Dropdown/>
-                        <Link className="black rounded-xl flex bg-red-700 w-1/2 text-sm text-white justify-center items-center" to="/post"> Post </Link>
+                        <Link className="black rounded-xl flex bg-red-700 w-1/2 text-sm text-white justify-center items-center md:hidden" to="/post"> Post </Link>
                         </div>
                         
                         

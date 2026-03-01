@@ -1,6 +1,6 @@
 
 
-const postPage = () => {
+const PostPage = () => {
 
     return (
 
@@ -10,5 +10,5 @@ const postPage = () => {
 
 
 
-export default postPage;
+export default PostPage;
 
